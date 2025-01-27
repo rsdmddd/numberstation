@@ -10,6 +10,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "json-stringify-safe": "^5.0.1"
+    "express": "^4.21.2"
   }
 }

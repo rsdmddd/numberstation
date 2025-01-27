@@ -1,8 +1,7 @@
 const fs = require('fs');
 const express = require('express');
 const app = express();
-const stringifySafe = require('json-stringify-safe');
-const port = process.env.PORT || 3000;  // Use environment variable if available, else default to 3000
+const port = process.env.PORT || 3000;
 
 function getNumberData() {
   const data = fs.readFileSync('data.json');
@@ -10,19 +9,8 @@ function getNumberData() {
 }
 
 app.get('/', (req, res) => {
-  // Simply stringify the req object
-  const stringREQ = stringifySafe(req);
-
-  // Log the stringified request to the file
-  fs.appendFile("visitlogs.txt", `Request: ${stringREQ}, Timestamp: ${new Date().toISOString()}\n`, (err) => {
-    if (err) {
-      console.error("Failed to log visit:", err);
-    } else {
-      console.log("Visit logged successfully");
-    }
-  });
-
-  // Continue with the response
+  console.log(req);
+  console.log("\n\n");
   const currentDate = new Date();
   const localDate = `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`;
   const NumberData = getNumberData();
@@ -55,5 +43,5 @@ app.get('/', (req, res) => {
 app.use(express.static('public'));
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on ${port}`);
 });
