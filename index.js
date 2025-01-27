@@ -18,9 +18,7 @@ app.get('/', (req, res) => {
   const NumberData = getNumberData();
   const numToPut = NumberData[(MINUTES.substring(0, MINUTES.length - 1) + "0")];
   console.log("GETTED: " + numTimesGETTED + " times")
-  console.log("PUTTING: " + numToPut)
-  console.log("MINUTES: " + MINUTES)
-  console.log("LCL TIME: " + localDate)
+  console.log("TIME: " + localDate)
   console.log("\n")
   res.send(`
 <!DOCTYPE html>
