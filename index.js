@@ -3,18 +3,25 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
+var numTimesGETTED = 0;
+
 function getNumberData() {
   const data = fs.readFileSync('data.json');
   return JSON.parse(data);
 }
 
 app.get('/', (req, res) => {
-  console.log(req);
-  console.log("\n\n");
+  numTimesGETTED++
   const currentDate = new Date();
-  const localDate = `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`;
+  const localDate = `${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
+  const MINUTES = `${currentDate.getMinutes()}`;
   const NumberData = getNumberData();
-  const numToPut = NumberData[localDate];
+  const numToPut = NumberData[(MINUTES.substring(0, MINUTES.length - 1) + "0")];
+  console.log("GETTED: " + numTimesGETTED + " times")
+  console.log("PUTTING: " + numToPut)
+  console.log("MINUTES: " + MINUTES)
+  console.log("LCL TIME: " + localDate)
+  console.log("\n")
   res.send(`
 <!DOCTYPE html>
 <html lang="en">
