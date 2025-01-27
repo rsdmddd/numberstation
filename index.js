@@ -41,6 +41,7 @@ app.get('/', (req, res) => {
     <div class = "number-Container">
         <h1>${numToPut}</h1>  
     </div>
+    <h1>We update every 10 minutes.</h1>
     </main>
   </body>
 </html>
